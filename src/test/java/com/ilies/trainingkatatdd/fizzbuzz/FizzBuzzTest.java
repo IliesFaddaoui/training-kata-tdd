@@ -17,4 +17,10 @@ class FizzBuzzTest {
         assertEquals("0", fizzBuzz.process(0));
     }
 
+    // 2nd test for fizzbuzz: we should assert for a second use case: should return Fizz if equal 3
+    @Test
+    void shouldReturnFizzIf3() {
+        assertEquals("Fizz",fizzBuzz.process(3));
+    }
+
 }
