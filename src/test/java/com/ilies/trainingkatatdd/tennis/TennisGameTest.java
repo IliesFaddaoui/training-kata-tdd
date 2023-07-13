@@ -156,15 +156,25 @@ class TennisGameTest {
     @Test
     void shouldRaffyWinTheGame() {
         tennisGame.scorePoint(RAFFY);
+        //0-15
         tennisGame.scorePoint(RAFFY);
+        //0-30
         tennisGame.scorePoint(RAFFY);
+        //O-40
         tennisGame.scorePoint(ROGER);
+        //15-40
         tennisGame.scorePoint(ROGER);
+        //30-40
         tennisGame.scorePoint(ROGER);
+        //40-40
         tennisGame.scorePoint(ROGER);
+        //AD-40
         tennisGame.scorePoint(RAFFY);
+        //40-40
         tennisGame.scorePoint(RAFFY);
+        //40-AD
         tennisGame.scorePoint(RAFFY);
+        //Game raffy
         assertEquals("Raffy win the game !", tennisGame.getScore());
     }
 

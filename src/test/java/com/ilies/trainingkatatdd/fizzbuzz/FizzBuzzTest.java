@@ -1,16 +1,20 @@
 package com.ilies.trainingkatatdd.fizzbuzz;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class FizzBuzzTest {
 
-    @Spy
-    private FizzBuzz fizzBuzz;
+    private static FizzBuzz fizzBuzz;
+
+    @BeforeAll
+    public static void init() {
+        fizzBuzz = new FizzBuzz();
+    }
 
     @Test
     void shouldReturn0If0() {
