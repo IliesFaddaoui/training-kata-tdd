@@ -1,19 +1,24 @@
 package com.ilies.trainingkatatdd.fizzbuzz;
 
 public class FizzBuzz {
-    public String process(int i) {
-        if (i == 0) {
+
+    public static final int ZERO = 0;
+    public static final int THREE = 3;
+    public static final int FIVE = 5;
+
+    public static String process(int value) {
+        if (value == ZERO) {
             return "0";
         }
         var result = "";
-        if (i % 3 == 0) {
+        if (value % THREE == ZERO) {
             result += "Fizz";
         }
-        if (i % 5 == 0) {
+        if (value % FIVE == ZERO) {
             result += "Buzz";
         }
         if (result.isBlank()) {
-            return String.valueOf(i);
+            return String.valueOf(value);
         } else {
             return result;
         }

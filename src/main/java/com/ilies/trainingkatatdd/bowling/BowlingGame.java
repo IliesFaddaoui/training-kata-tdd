@@ -23,21 +23,21 @@ public class BowlingGame {
     }
 
     public int getScore() {
-        return rollHistory.stream().limit(10).mapToInt(RollPair::score).sum();
+        return rollHistory.stream().limit(MAX_ROUNDS).mapToInt(RollPair::score).sum();
     }
 
     private void updateEventualPreviousStrike(int firstRoll, int secondRoll) {
         if (isEnoughThrowsToCalculateStrikeResult()) {
             //nb : penultimate means before the last in english :-)
-            RollPair penultimateRollPair = rollHistory.get(rollHistory.size() - 2);
-            int penultimateScoreUpdated = penultimateRollPair.score();
-            if (penultimateRollPair.isStrike()) {
-                if (getLastRollPair().firstRoll == 10) {
+            int penultimateScoreUpdated = getPenultimateRollPair().score();
+            if (getPenultimateRollPair().isStrike()) {
+                if (getLastRollPair().firstRoll == MAX_SCORE) {
                     penultimateScoreUpdated += firstRoll + MAX_SCORE;
                 } else {
                     penultimateScoreUpdated += firstRoll + secondRoll + getLastRollPair().score;
                 }
-                rollHistory.set(rollHistory.size() - 2, new RollPair(penultimateScoreUpdated, penultimateRollPair.firstRoll(), penultimateRollPair.secondRoll()));
+                int penultimateRound = rollHistory.size() - 2;
+                rollHistory.set(penultimateRound, new RollPair(penultimateScoreUpdated, getPenultimateRollPair().firstRoll(), getPenultimateRollPair().secondRoll()));
             }
         }
     }
@@ -55,10 +55,14 @@ public class BowlingGame {
 
     private void checkIfGameIsOver() {
         if (rollHistory.size() >= MAX_ROUNDS) {
-            if (!isLastRollAStrikeOrASpare() || rollHistory.size() == MAX_ROUNDS + 2 || isTenthAStrikeWhenEleventhRoll()) {
+            if (!isLastRollAStrikeOrASpare() || isTwelfthRoll() || isTenthAStrikeWhenEleventhRoll()) {
                 throw new IllegalStateException("La partie est déjà terminée. Vous ne pouvez pas enregistrer de nouveau résultat.");
             }
         }
+    }
+
+    private boolean isTwelfthRoll() {
+        return rollHistory.size() == MAX_ROUNDS + 2;
     }
 
     private boolean isTenthAStrikeWhenEleventhRoll() {
@@ -74,6 +78,9 @@ public class BowlingGame {
 
     private RollPair getLastRollPair() {
         return rollHistory.get(rollHistory.size() - 1);
+    }
+    private RollPair getPenultimateRollPair() {
+        return rollHistory.get(rollHistory.size() - 2);
     }
 
     private void checkIfRoundScoreIsLegit(int firstRoll, int secondRoll) {
