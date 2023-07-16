@@ -1,4 +1,4 @@
-package com.ilies.trainingkatatdd.leapyears;
+ package com.ilies.trainingkatatdd.leapyears;
 
 public class LeapYear {
 
@@ -8,6 +8,10 @@ public class LeapYear {
     private static final int ZERO = 0;
 
     public static boolean aLeapYear(int year) {
-        return year % FOUR_HUNDRED == ZERO || (year % FOUR == ZERO && year % HUNDRED != ZERO);
+        return isMultiple(year, FOUR_HUNDRED) || isMultiple(year, FOUR) && !isMultiple(year,HUNDRED);
+    }
+
+    public static boolean isMultiple(int year, int divider) {
+        return year % divider == ZERO;
     }
 }
