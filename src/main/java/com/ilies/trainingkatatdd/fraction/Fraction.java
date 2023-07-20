@@ -2,8 +2,14 @@ package com.ilies.trainingkatatdd.fraction;
 
 public class Fraction {
 
+    public static final int ZERO = 0;
     private final int nominator;
     private final int denominator;
+    public static final int ONE = 1;
+    public static final Fraction NULL = new Fraction(ZERO, ONE);
+    public static final Fraction PLUS_INFINITY = new Fraction(ONE, ZERO);
+    public static final Fraction MINUS_INFINITY = new Fraction(-ONE, ZERO);
+
     public int getNominator() {
         return nominator;
     }
@@ -16,11 +22,6 @@ public class Fraction {
         this.nominator = nominator;
         this.denominator = denominator;
     }
-    public static final int ZERO = 0;
-    public static final Fraction NULL = new Fraction(0,1);
-    public static final Fraction PLUS_INFINITY = new Fraction(1,0);
-    public static final Fraction MINUS_INFINITY = new Fraction(-1,0);
-
     public static Fraction createFraction(int nominator, int denominator) {
         if(denominator == ZERO) {
             return PLUS_INFINITY;

@@ -4,10 +4,6 @@ public class HaraganaWord {
     private final String word;
     private final String kanaTranslation;
 
-    public String getKanaTranslation() {
-        return kanaTranslation;
-    }
-
     public HaraganaWord(String word) {
         this.word = word.toLowerCase();
         this.kanaTranslation = generateKanaFromHaragana();
@@ -25,5 +21,9 @@ public class HaraganaWord {
             wordToTranslateToKana = wordToTranslateToKana.replace(h.getHaraganaSyllabus(), h.getKanaEquivalent());
         }
         return wordToTranslateToKana;
+    }
+
+    public String getKanaTranslation() {
+        return kanaTranslation;
     }
 }
