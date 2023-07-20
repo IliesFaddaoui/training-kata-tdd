@@ -7,7 +7,6 @@ public enum HaraganaTwoLettersSyllabus {
     KE("ke","け"),
     KO("ko","こ"),
     SA("sa","さ"),
-    SHI("shi","し"),
     SU("su","す"),
     SE("se","せ"),
     SO("so","そ"),
