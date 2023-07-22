@@ -1,6 +1,6 @@
 package com.ilies.trainingkatatdd.haragana_tokana;
 
-public enum HaraganaThreeLettersSyllabus {
+public enum HaraganaThreeLettersSyllabus implements HaraganaSyllabus{
     SHI("shi","し"),
     CHI("chi","ち"),
     TSU("tsu","つ");

@@ -1,6 +1,6 @@
 package com.ilies.trainingkatatdd.haragana_tokana;
 
-public enum HaraganaOneLetterSyllabus {
+public enum HaraganaOneLetterSyllabus implements HaraganaSyllabus{
     A("a","あ"),
     I("i",	"い"),
     U("u","う"),

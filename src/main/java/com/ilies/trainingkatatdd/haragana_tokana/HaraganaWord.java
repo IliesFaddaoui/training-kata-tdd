@@ -2,25 +2,28 @@ package com.ilies.trainingkatatdd.haragana_tokana;
 
 public class HaraganaWord {
     private final String word;
-    private final String kanaTranslation;
+    private String kanaTranslation;
 
     public HaraganaWord(String word) {
-        this.word = word.toLowerCase();
-        this.kanaTranslation = generateKanaFromHaragana();
+        this.word = word;
+        generateKanaFromHaragana(word.toLowerCase());
     }
 
-    private String generateKanaFromHaragana() {
-        String wordToTranslateToKana = this.word;
-        for(HaraganaThreeLettersSyllabus h: HaraganaThreeLettersSyllabus.values()) {
-            wordToTranslateToKana = wordToTranslateToKana.replace(h.getHaraganaSyllabus(), h.getKanaEquivalent());
+    private void generateKanaFromHaragana(String wordToTranslateToKana) {
+        this.kanaTranslation = wordToTranslateToKana;
+        checkAndReplaceTheseSyllabusByKanaIfPresentInWord(HaraganaThreeLettersSyllabus.values());
+        checkAndReplaceTheseSyllabusByKanaIfPresentInWord(HaraganaTwoLettersSyllabus.values());
+        checkAndReplaceTheseSyllabusByKanaIfPresentInWord(HaraganaOneLetterSyllabus.values());
+    }
+
+    private void checkAndReplaceTheseSyllabusByKanaIfPresentInWord(HaraganaSyllabus[] values) {
+        for(HaraganaSyllabus syllabus: values) {
+            this.kanaTranslation = replaceKanaInWordIfSyllabusPresent(this.kanaTranslation, syllabus);
         }
-        for(HaraganaTwoLettersSyllabus h: HaraganaTwoLettersSyllabus.values()) {
-            wordToTranslateToKana = wordToTranslateToKana.replace(h.getHaraganaSyllabus(), h.getKanaEquivalent());
-        }
-        for(HaraganaOneLetterSyllabus h: HaraganaOneLetterSyllabus.values()) {
-            wordToTranslateToKana = wordToTranslateToKana.replace(h.getHaraganaSyllabus(), h.getKanaEquivalent());
-        }
-        return wordToTranslateToKana;
+    }
+
+    private static String replaceKanaInWordIfSyllabusPresent(String wordToTranslateToKana, HaraganaSyllabus syllabus) {
+        return wordToTranslateToKana.replace(syllabus.getHaraganaSyllabus(), syllabus.getKanaEquivalent());
     }
 
     public String getKanaTranslation() {
