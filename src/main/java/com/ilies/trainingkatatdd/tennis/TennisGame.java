@@ -7,13 +7,14 @@ public class TennisGame {
 
     private static final int FORTY_POINT_SCORE = 3;
     private static final int ADVANTAGE_POINT_SCORE = 4;
-    private static final String LOVE = "Love " ;
-    private static final String FIFTEEN = "Fifteen " ;
-    private static final String THIRTY = "Thirty " ;
-    private static final String FORTY = "Forty " ;
-    private static final String ADVANTAGE = "Advantage " ;
-    private static final String ALL = "all" ;
-    public static final String WIN_THE_GAME = " win the game !" ;
+    private static final String SPACE = " ";
+    private static final String LOVE = "Love" + SPACE;
+    private static final String FIFTEEN = "Fifteen" + SPACE;
+    private static final String THIRTY = "Thirty" + SPACE;
+    private static final String FORTY = "Forty" + SPACE;
+    private static final String ADVANTAGE = "Advantage" + SPACE;
+    private static final String ALL = "all";
+    private static final String WIN_THE_GAME = SPACE + "win the game !";
 
     private String score;
     private int player1Score;
@@ -25,7 +26,7 @@ public class TennisGame {
 
     public TennisGame(String firstPlayerName, String secondPlayerName) {
         gameInformation = new GameInformation(firstPlayerName, secondPlayerName);
-        this.score = "Love all" ;
+        this.score = "Love all";
         this.player1Score = 0;
         this.player2Score = 0;
         this.isGameOver = false;
@@ -116,7 +117,7 @@ public class TennisGame {
                 }
             }
         }
-        return "" ;
+        return "";
     }
 
     private String textualScoreRegardingPlayerOnePoints() {
@@ -139,7 +140,7 @@ public class TennisGame {
                 }
             }
         }
-        return "" ;
+        return "";
     }
 
     private record GameInformation(String firstPlayerName, String secondPlayerName) {
