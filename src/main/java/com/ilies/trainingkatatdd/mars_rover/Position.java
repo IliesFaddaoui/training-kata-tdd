@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Position {
+    public static final int ONE = 1;
     private int x;
     private int y;
 
@@ -15,15 +16,15 @@ public class Position {
     }
 
     public void increaseXPosition() {
-        x += 1;
+        x += ONE;
     }
     public void decreaseXPosition() {
-        x -= 1;
+        x -= ONE;
     }
     public void increaseYPosition() {
-        y += 1;
+        y += ONE;
     }
     public void decreaseYPosition() {
-        y -= 1;
+        y -= ONE;
     }
 }

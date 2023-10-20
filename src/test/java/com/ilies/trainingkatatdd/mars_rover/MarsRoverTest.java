@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MarsRoverTest {
     private MarsRover marsRover;
@@ -114,4 +115,11 @@ class MarsRoverTest {
         assertEquals(0,marsRover.getY());
         assertEquals(Direction.W,marsRover.getDirection());
     }
+
+    @Test
+    public void shouldRaiseExceptionIfInvalidCommandsIsSend() {
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> marsRover.move("KLP"));
+        assertEquals("java.lang.Exception: Invalid command at step 1: K", exception.getMessage());
+    }
+
 }

@@ -8,7 +8,12 @@ import java.util.Map;
 
 @Getter
 public class MarsRover {
-    private Position position;
+    public static final String INVALID_COMMAND_AT_STEP = "Invalid command at step ";
+    public static final String DEUX_POINTS = ": ";
+    public static final String EMPTY_STRING = "";
+    public static final int ONE = 1;
+
+    private final Position position;
     private Direction direction;
 
     private final Map<String, Runnable> movementMap = Map.of(
@@ -19,16 +24,13 @@ public class MarsRover {
     );
 
     private void moveBackward() {
-        if(Direction.E.equals(direction)){
+        if (Direction.E.equals(direction)) {
             position.decreaseXPosition();
-        }
-        else if(Direction.N.equals(direction)) {
+        } else if (Direction.N.equals(direction)) {
             position.decreaseYPosition();
-        }
-        else if(Direction.S.equals(direction)) {
+        } else if (Direction.S.equals(direction)) {
             position.increaseYPosition();
-        }
-        else if(Direction.W.equals(direction)) {
+        } else if (Direction.W.equals(direction)) {
             position.increaseXPosition();
         }
     }
@@ -48,11 +50,22 @@ public class MarsRover {
 
     public void move(String commands) {
         if (!commands.isEmpty()) {
-            List<String> orderedCommands = new ArrayList<>(List.of(commands.split("")));
+            List<String> orderedCommands = new ArrayList<>(List.of(commands.split(EMPTY_STRING)));
             orderedCommands.forEach(c -> {
-                movementMap.get(c).run();
+                try {
+                    proceedMovement(orderedCommands, c);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             });
         }
+    }
+
+    private void proceedMovement(List<String> orderedCommands, String c) throws Exception {
+        if (!movementMap.containsKey(c)) {
+            throw new Exception(INVALID_COMMAND_AT_STEP + (orderedCommands.indexOf(c) + ONE) + DEUX_POINTS + c);
+        }
+        movementMap.get(c).run();
     }
 
     private Direction turnRightDirection() {
@@ -74,16 +87,13 @@ public class MarsRover {
     }
 
     private void moveForward() {
-        if(Direction.N.equals(direction)) {
+        if (Direction.N.equals(direction)) {
             this.position.increaseYPosition();
-        }
-        else if(Direction.E.equals(direction)) {
+        } else if (Direction.E.equals(direction)) {
             position.increaseXPosition();
-        }
-        else if(Direction.S.equals(direction)) {
+        } else if (Direction.S.equals(direction)) {
             position.decreaseYPosition();
-        }
-        else if(Direction.W.equals(direction)) {
+        } else if (Direction.W.equals(direction)) {
             position.decreaseXPosition();
         }
     }
