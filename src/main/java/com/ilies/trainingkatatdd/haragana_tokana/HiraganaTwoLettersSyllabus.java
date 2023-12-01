@@ -1,6 +1,6 @@
 package com.ilies.trainingkatatdd.haragana_tokana;
 
-public enum HaraganaTwoLettersSyllabus implements HaraganaSyllabus{
+public enum HiraganaTwoLettersSyllabus implements HaraganaSyllabus{
     KA("ka",	"か"),
     KI("ki","き"),
     KU("ku","く"),
@@ -40,19 +40,19 @@ public enum HaraganaTwoLettersSyllabus implements HaraganaSyllabus{
     WI("wi","ゐ"),
     WE("we","ゑ"),
     WO("wo","を");
-    private final String haraganaSyllabus;
+    private final String hiraganaSyllabus;
     private final String kanaEquivalent;
 
-    public String getHaraganaSyllabus() {
-        return haraganaSyllabus;
+    public String getHiraganaSyllabus() {
+        return hiraganaSyllabus;
     }
 
     public String getKanaEquivalent() {
         return kanaEquivalent;
     }
 
-    HaraganaTwoLettersSyllabus(String haraganaSyllabus, String kanaEquivalent) {
-        this.haraganaSyllabus = haraganaSyllabus;
+    HiraganaTwoLettersSyllabus(String hiraganaSyllabus, String kanaEquivalent) {
+        this.hiraganaSyllabus = hiraganaSyllabus;
         this.kanaEquivalent = kanaEquivalent;
     }
 }
