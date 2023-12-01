@@ -63,17 +63,13 @@ public enum HiraganaSyllabus {
         this.kanji = kanji;
     }
 
-    public String getHiragana() {
-        return hiragana;
-    }
-
-    public String getKanji() {
-        return kanji;
-    }
-
-    public static List<HiraganaSyllabus> getSortedHiraganaSyllabus() {
+    public static List<HiraganaSyllabus> all() {
         return Arrays.stream(values())
-                .sorted(Comparator.comparingInt(entry -> entry.getHiragana().length()))
+                .sorted(Comparator.comparingInt(entry -> entry.hiragana.length()))
                 .collect(Collectors.toList()).reversed();
+    }
+
+    public String translateKanji(String sentence) {
+        return sentence.toLowerCase().replace(hiragana, kanji);
     }
 }
