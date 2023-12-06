@@ -46,7 +46,7 @@ class GameOfLifeTest {
         var initGrid = new Grid(cells);
 
         Grid gridAtNextGeneration = initGrid.nextGeneration();
-        
+
         assertThat(gridAtNextGeneration.cellAt(1,1)).isEqualTo(Cell.dead());
     }
 
@@ -64,6 +64,21 @@ class GameOfLifeTest {
         assertThat(gridAtNextGeneration.cellAt(0,0)).isEqualTo(Cell.alive());
         assertThat(gridAtNextGeneration.cellAt(1,2)).isEqualTo(Cell.alive());
     }
+
+    @Test
+    void dead_cell_with__3_alive_neighbors_relives() {
+        Cell[][] cells = {
+                {Cell.dead(),Cell.alive(),Cell.dead()},
+                {Cell.dead(),Cell.alive(),Cell.alive()},
+                {Cell.dead(),Cell.dead(),Cell.dead()},
+        };
+        var initGrid = new Grid(cells);
+
+        Grid gridAtNextGeneration = initGrid.nextGeneration();
+
+        assertThat(gridAtNextGeneration.cellAt(0,2)).isEqualTo(Cell.alive());
+    }
+
 
 
     @Nested
@@ -99,7 +114,4 @@ class GameOfLifeTest {
             assertThat(aliveNeighbors).isEqualTo(expectedAliveNeighbors);
         }
     }
-
-
-
 }

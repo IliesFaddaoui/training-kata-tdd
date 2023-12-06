@@ -13,6 +13,9 @@ public record Grid (Cell[][] cells){
                     nextGeneration[i][j] = Cell.dead();
                 else if(aliveNeighbors >3)
                     nextGeneration[i][j] = Cell.dead();
+                else if(aliveNeighbors == 3) {
+                    nextGeneration[i][j] = Cell.alive();
+                }
                 else
                     nextGeneration[i][j] = cells[i][j];
             }
