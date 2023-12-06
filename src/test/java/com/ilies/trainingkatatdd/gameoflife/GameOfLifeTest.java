@@ -19,7 +19,7 @@ class GameOfLifeTest {
 
         Grid gridAtNextGeneration = initGrid.nextGeneration();
 
-        assertThat(gridAtNextGeneration.cells()).isEqualTo(cells);
+        assertThat(gridAtNextGeneration.cellAt(0,0)).isEqualTo(Cell.dead());
     }
 
     @Test
@@ -33,19 +33,38 @@ class GameOfLifeTest {
 
         Grid gridAtNextGeneration = initGrid.nextGeneration();
 
-        assertThat(gridAtNextGeneration.cells()).isEqualTo(new Cell[][]{
-                {Cell.dead(),Cell.dead(),Cell.dead()},
-                {Cell.dead(),Cell.dead(),Cell.dead()},
-                {Cell.dead(),Cell.dead(),Cell.dead()},
-        });
+        assertThat(gridAtNextGeneration.cellAt(0,0)).isEqualTo(Cell.dead());
     }
 
+    @Test
+    void cell_with_more_than_3_alive_neighbors_dies() {
+        Cell[][] cells = {
+                {Cell.alive(),Cell.alive(),Cell.dead()},
+                {Cell.alive(),Cell.alive(),Cell.dead()},
+                {Cell.dead(),Cell.dead(),Cell.alive()},
+        };
+        var initGrid = new Grid(cells);
 
-    /**
-     *         i-1,j-1 | i-1,j |i-1,j+1
-     *          i,j-1  |i,j    | i,j+1
-     *         i+1,j-1 | i+1,j |i+1,j+1
-     */
+        Grid gridAtNextGeneration = initGrid.nextGeneration();
+        
+        assertThat(gridAtNextGeneration.cellAt(1,1)).isEqualTo(Cell.dead());
+    }
+
+    @Test
+    void cell_with_2_or_3_alive_neighbors_lives() {
+        Cell[][] cells = {
+                {Cell.alive(),Cell.alive(),Cell.dead()},
+                {Cell.alive(),Cell.alive(),Cell.alive()},
+                {Cell.dead(),Cell.dead(),Cell.dead()},
+        };
+        var initGrid = new Grid(cells);
+
+        Grid gridAtNextGeneration = initGrid.nextGeneration();
+
+        assertThat(gridAtNextGeneration.cellAt(0,0)).isEqualTo(Cell.alive());
+        assertThat(gridAtNextGeneration.cellAt(1,2)).isEqualTo(Cell.alive());
+    }
+
 
     @Nested
     @DisplayName("How many alive neighbors")
