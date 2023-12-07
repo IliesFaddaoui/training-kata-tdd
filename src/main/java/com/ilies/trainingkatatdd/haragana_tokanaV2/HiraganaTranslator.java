@@ -1,4 +1,4 @@
-package com.ilies.trainingkatatddv2.haragana_tokana;
+package com.ilies.trainingkatatdd.haragana_tokanaV2;
 
 
 public class HiraganaTranslator {
